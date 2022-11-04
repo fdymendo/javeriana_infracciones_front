@@ -6,11 +6,29 @@ import 'react-toastify/dist/ReactToastify.css';
 export default function Infraccion() {
 
     const [plate, setPlaca] = useState('')
+    const [name, setNombre] = useState('')
+    const [surname, setApellido] = useState('')
+    const [email, setEmail] = useState('')
+    const [typeDocument, setTipoDoc] = useState('')
+    const [document, setNumero] = useState('')
+    const [id, setTipoInf] = useState('')
 
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = {
-            vehicle: { plate }
+            vehicle: { plate },
+            parkingLot: {
+                "id": "dfcae462-283f-4bb6-a9e3-7cfddfde9fcc"
+            },
+            typeInfraction: { id },
+            user: {
+                name,
+                surname,
+                email,
+                typeDocument,
+                document
+            }
+
         }
         console.log(JSON.stringify(data));
         fetch('http://localhost:8081/infraccion/v1/placa', { method: 'POST', headers: { 'Content-type': 'application/json' }, body: JSON.stringify(data) })
@@ -18,10 +36,12 @@ export default function Infraccion() {
                 if (response.ok) {
                     toast.success("Infraccion guardada satisfactoriamente");
                     return response.json();
+                } else {
+                    toast.error("Error en el envio de placa para registro de infracción");
                 }
             })
             .catch(error => {
-                toast.error("Error al guardar placa para registro de infracción");
+                toast.error("Error inesperado a la hora de enviar el request");
                 console.log(error);
             })
     }
@@ -31,9 +51,26 @@ export default function Infraccion() {
             <div className="register">
                 <div className="col-1">
                     <form id='form' className='flex flex-col' onSubmit={handleSubmit}>
-                        <h1 className='h1'>Registrar Infracción a placa registrada</h1>
-                        <input type="text" placeholder='placa vehiculo' onChange={(event) => setPlaca(event.target.value)} />
-                        <button className='btn'>Enviar Registro</button>
+                        <h1 className='h1'>Registrar Infracción vehicular</h1>
+
+                        <input id="nombretxt" type="text" placeholder='Nombre infractor' onChange={(event) => setNombre(event.target.value)} />
+                        <input id="apellidotxt" type="text" placeholder='Apellidos infractor' onChange={(event) => setApellido(event.target.value)} />
+                        <input id="emailtxt" type="text" placeholder='Email infractor' onChange={(event) => setEmail(event.target.value)} />
+                        <input id="placatxt" type="text" placeholder='Placa vehiculo' onChange={(event) => setPlaca(event.target.value)} />
+                        <label title='Tipo de documento'>Seleccione tipo de infración</label>
+                        <select id="inftxt" onChange={(event) => setTipoInf(event.target.value)} >
+                            <option disabled selected value> Seleccione una opción </option>
+                            <option name="Riesgo al volante">84c9dcbc-bae4-4fef-aa46-77541656cf95</option>
+                        </select>
+                        <label title='Tipo de documento'>Seleccione tipo de documento</label>
+                        <select id="doctxt" onChange={(event) => setTipoDoc(event.target.value)} >
+                            <option disabled selected value> Seleccione una opción </option>
+                            <option name="Cedula de ciudadania">CC</option>
+                            <option name="Identidad">TI</option>
+                            <option name="Pasaporte">PA</option>
+                        </select>
+                        <input id="iddoctxt" type="text" placeholder='Numero de documento' onChange={(event) => setNumero(event.target.value)} />
+                        <button id="btnreg" className='btn'>Enviar Registro</button>
                     </form>
                 </div>
             </div>
