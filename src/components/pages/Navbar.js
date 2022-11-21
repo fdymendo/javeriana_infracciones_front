@@ -1,7 +1,6 @@
-import React, {useState, useEffect} from 'react';
-import {Link} from 'react-router-dom';
-import { Button } from './Button';
-import './Navbar.css'; 
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import '../styles/Navbar.css';
 
 function Navbar() {
     const [click, setClick] = useState(false);
@@ -18,15 +17,14 @@ function Navbar() {
         }
     }
 
-    useEffect(() => {showButton()}, []);
+    useEffect(() => { showButton() }, []);
     window.addEventListener('resize', showButton);
-
     return (
         <>
             <nav className='navbar'>
                 <div className='navbar-container'>
                     <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
-                        SIMIT <i className='fab fa-typo3'/>
+                        SIMIT <i className='fab fa-typo3' />
                     </Link>
                     <div className='menu-icon' onClick={handleClick}>
                         <i className={click ? 'fas fa-times' : 'fas fa-bars'} />
@@ -44,19 +42,11 @@ function Navbar() {
                         </Link>
                     </li>
                     <li className='nav-item'>
-                        <Link to='/historicoMulta' className='nav-links' onClick={closeMobileMenu}>
-                            Historico de Multas
-                        </Link>
-                    </li>
-                    <li className='nav-item'>
-                        <Link to='/historicoMulta' className='nav-links-mobile' onClick={closeMobileMenu}>
-                            SIGN UP
+                        <Link to='/citas' className='nav-links' onClick={closeMobileMenu}>
+                            Registrar Citas
                         </Link>
                     </li>
                 </ul>
-
-                {button && <Button buttonStyle={'btn--outline'}>Ingreso al Portal</Button>}
-
             </nav>
         </>
     )

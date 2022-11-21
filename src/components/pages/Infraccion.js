@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import './Infraccion.css';
+import '../styles/Infraccion.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { callApi } from '../utils/RestFetch';
+import { prod } from '../utils/DateUtils';
 
 export default function Infraccion() {
 
@@ -28,23 +30,16 @@ export default function Infraccion() {
                 typeDocument,
                 document
             }
-
         }
-        console.log(JSON.stringify(data));
-        fetch('http://localhost:8081/infraccion/v1/placa', { method: 'POST', headers: { 'Content-type': 'application/json' }, body: JSON.stringify(data) })
-            .then((response) => {
-                if (response.ok) {
-                    toast.success("Infraccion guardada satisfactoriamente");
-                    return response.json();
-                } else {
-                    toast.error("Error en el envio de placa para registro de infracción");
-                }
-            })
-            .catch(error => {
-                toast.error("Error inesperado a la hora de enviar el request");
-                console.log(error);
-            })
+        try {
+            callApi(prod + "/infraccion/v1/placa", data, "POST", null);
+            toast.success("Infraccion guardada satisfactoriamente");
+        } catch {
+            toast.error("Error en el envio de placa para registro de infracción");
+        }
     }
+
+
 
     return (
         <section>
@@ -74,7 +69,7 @@ export default function Infraccion() {
                     </form>
                 </div>
             </div>
-            <ToastContainer position='bottom-center'/>
+            <ToastContainer position='bottom-center' />
         </section>
     )
 }
