@@ -4,6 +4,8 @@ import '../styles/Navbar.css';
 
 function Navbar() {
     const [click, setClick] = useState(false);
+
+    // eslint-disable-next-line no-unused-vars
     const [button, setButton] = useState(true);
 
     const handleClick = () => setClick(!click);

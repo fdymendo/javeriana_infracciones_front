@@ -19,7 +19,7 @@ export default function Login() {
     }
     callLoginApi(prod + "/usuarios/v1/login", heads)
     .then((result) => {
-      if (result == 'success') {
+      if (result === 'success') {
         console.log(window.localStorage.getItem('token'));
         navigate("/infraccion");
       }
