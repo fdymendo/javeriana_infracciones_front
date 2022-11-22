@@ -9,7 +9,7 @@ export function getFormattedDate() {
     return dd + '/' + mm + '/' + yyyy;
 }
 
-export const prod = "https://4yd24uysli.execute-api.us-east-1.amazonaws.com";
+export const prod = "https://4yd24uysli.execute-api.us-east-1.amazonaws.com/prod";
 export const local = "localhost:8080";
 export const local1 = "localhost:8081";
 export const local2 = "localhost:8082";
