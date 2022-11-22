@@ -51,6 +51,7 @@ export default function Citas() {
                             <option name="Pasaporte">PA</option>
                         </select>
                         <input id="iddoctxt" type="text" placeholder='Numero de documento' onChange={(event) => setNumero(event.target.value)} />
+                        <label title='Elegir cita'>Seleccione fecha en la cual desea agendar su cita</label>
                         <DatePicker selected={fecha} onChange={(date) => setFecha(date)} />
                         <button id="btnreg" className='btn'>Enviar Registro</button>
                     </form>

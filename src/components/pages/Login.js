@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css"
 import { callLoginApi } from '../utils/RestFetch';
 import { useNavigate } from 'react-router-dom';
 import { prod } from '../utils/DateUtils';
+import { ToastContainer, toast } from 'react-toastify';
 
 export default function Login() {
 
@@ -18,15 +19,13 @@ export default function Login() {
       pwd: pwd
     }
     callLoginApi(prod + "/usuarios/v1/login", heads)
-    .then((result) => {
-      if (result === 'success') {
-        console.log(window.localStorage.getItem('token'));
+      .then((result) => {
         navigate("/infraccion");
-      }
-    })
+      }).catch((result => {
+        toast.error("Credenciales erroneos, intentelo nuevamente");
+        console.log(result);
+      }))
   }
-
-  console.log(window.localStorage.getItem('token'));
 
   return (
     <section>
@@ -60,6 +59,7 @@ export default function Login() {
           </div>
         </form>
       </div>
+      <ToastContainer position='bottom-center' />
     </section>
   )
 }
