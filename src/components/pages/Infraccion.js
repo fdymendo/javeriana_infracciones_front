@@ -31,12 +31,11 @@ export default function Infraccion() {
                 document
             }
         }
-        try {
-            callApi(prod + "/infraccion/v1/placa", data, "POST", null);
+        callApi(prod + "/infraccion/v1/placa", data, "POST", null).then(() => {
             toast.success("Infraccion guardada satisfactoriamente");
-        } catch {
+        }).catch(() => {
             toast.error("Error en el envio de placa para registro de infracción");
-        }
+        })
     }
 
 

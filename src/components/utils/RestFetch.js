@@ -35,7 +35,7 @@ export async function callLoginApi(url, heads) {
     }
 
     let options = {
-        mode: "cors",
+        mode: "no-cors",
         method: 'GET',
         headers: heads
     };
