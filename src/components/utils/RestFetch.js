@@ -39,19 +39,11 @@ export async function callLoginApi(url, heads) {
         method: 'GET',
         headers: heads
     };
-
-    try {
-        const response = await fetch(url, options);
-        const res = await response.json();
-        window.localStorage.setItem('token', JSON.stringify(res));
-    } catch {
-
-        return 'failure';
-    }
-
-    return 'success';
+    const response = await fetch(url, options);
+    const res = await response.json();
+    window.localStorage.setItem('token', JSON.stringify(res));
 }
 
-function checkIfJSONisEmpty(obj){
+function checkIfJSONisEmpty(obj) {
     return obj === null || Object.keys(obj).length === 0;
 }

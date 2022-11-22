@@ -19,12 +19,12 @@ export default function Login() {
       pwd: pwd
     }
     callLoginApi(prod + "/usuarios/v1/login", heads)
-      .then((result) => {
+      .then(() => {
         navigate("/infraccion");
-      }).catch((result => {
-        toast.error("Credenciales erroneos, intentelo nuevamente");
+      }).catch(() => {
+        toast.error("Error al enviar las credenciales de autenticacion");
         console.log(result);
-      }))
+      })
   }
 
   return (
