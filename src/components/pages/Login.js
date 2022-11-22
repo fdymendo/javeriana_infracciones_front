@@ -23,7 +23,6 @@ export default function Login() {
         navigate("/infraccion");
       }).catch(() => {
         toast.error("Error al enviar las credenciales de autenticacion");
-        console.log(result);
       })
   }
 
