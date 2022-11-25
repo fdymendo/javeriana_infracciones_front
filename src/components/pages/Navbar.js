@@ -48,6 +48,11 @@ function Navbar() {
                             Registrar Citas
                         </Link>
                     </li>
+                    <li className='nav-item'>
+                        <Link to='/consulta' className='nav-links' onClick={closeMobileMenu}>
+                            Consultar Infracciones
+                        </Link>
+                    </li>
                 </ul>
             </nav>
         </>
