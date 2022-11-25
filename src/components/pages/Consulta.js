@@ -19,9 +19,8 @@ export default function Consulta() {
             .then(response => {
                 setData(response.infractions);
                 console.log(data);
-                //toast.success("Cita registrada satisfactoriamente");
             }).catch(result => {
-                toast.error("Error al registrar la cita");
+                toast.error("Error al consultar");
             })
     }
 
@@ -39,7 +38,7 @@ export default function Consulta() {
                 <input id="iddoctxt" type="text" placeholder='Numero de documento' onChange={(event) => setNumero(event.target.value)} />
                 <button id="btnreg" className='btn'>Enviar</button>
             </form>
-            <div class="table-wrapper">
+            <div class="table-wrapper"  >
                 <table class="fl-table">
                     <tbody>
                         <tr>
@@ -48,7 +47,7 @@ export default function Consulta() {
                             <th>Tipo de placa</th>
                             <th>Fecha de infraccion</th>
                             <th>Parqueadero</th>
-                            <th>Detalle de la infraccion</th>
+                            <th>Detalle de la infracción</th>
                         </tr>
                         {
                             data?.map((infraccion, index) => (
@@ -58,7 +57,7 @@ export default function Consulta() {
                                     <td>{infraccion.vehicle.typePlate.name}</td>
                                     <td>{infraccion.createDate}</td>
                                     <td>{infraccion.parkingLot.name}</td>
-                                    <td>{infraccion.typeInfraction.detail}</td>
+                                    <td>"skadsakldjsdasadjasdksajdsaksadjksaksa"</td>
                                 </tr>
                             ))
                         }
